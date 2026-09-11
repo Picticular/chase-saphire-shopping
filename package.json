@@ -1,0 +1,43 @@
+{
+  "name": "chase-sapphire-shopping",
+  "version": "0.1.0",
+  "description": "Chase Sapphire Shopping landing page.",
+  "author": "Doug Jones (cjboco.com)",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Picticular/chase-sapphire-shopping.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Picticular/chase-sapphire-shopping/issues"
+  },
+  "dependencies": {
+    "framer-motion": "^12.43.0",
+    "next": "^16.3.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^25.9.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

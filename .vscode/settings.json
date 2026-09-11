@@ -1,0 +1,58 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "search.exclude": {
+    "**/.gitlab": true,
+    "**/.vscode": true,
+    "**/coverage": true,
+    "**/node_modules": true,
+    "**/compiled": true,
+    "**/build": true
+  },
+  "eslint.validate": ["javascript"],
+  "eslint.options": {
+    "extensions": [".js"]
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.lintTask.enable": true,
+  "eslint.packageManager": "npm",
+  "eslint.run": "onSave",
+  "eslint.format.enable": true,
+  "stylelint.enable": true,
+  "css.validate": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.linkedEditing": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.wrappingIndent": "same",
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 120,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
+  "editor.quickSuggestionsDelay": 10000,
+  "editor.suggestOnTriggerCharacters": false,
+  "diffEditor.wordWrap": "off",
+  "prettier.enableDebugLogs": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 120,
+  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "git.ignoreLimitWarning": true
+}
