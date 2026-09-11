@@ -33,12 +33,12 @@ dev.
 Push to `main`. `.github/workflows/nextjs.yml` installs with Bun, runs lint and typecheck,
 builds, and publishes `out/` to GitHub Pages. Until the custom domain is live the site is
 at https://picticular.github.io/chase-saphire-shopping/ and the workflow sets
-`BASE_PATH=/chase-saphire-shopping` for the build.
+`BASE_PATH=/chase-saphire-shopping` and `SITE_URL` (used for the Open Graph tags) for the build.
 
 ### Moving to sapphire.picticular.com
 
 1. Add a DNS record at ezhostingserver.com: `sapphire  CNAME  picticular.github.io`.
-2. Delete the `BASE_PATH` env from the build step in `.github/workflows/nextjs.yml`.
+2. Delete the `BASE_PATH` and `SITE_URL` env from the build step in `.github/workflows/nextjs.yml`.
 3. Set the custom domain: `gh api -X PUT repos/Picticular/chase-saphire-shopping/pages -f cname=sapphire.picticular.com`,
    then tick "Enforce HTTPS" in Settings → Pages once the DNS check passes.
 
@@ -75,7 +75,7 @@ src/
   assets/                Chase logo SVGs (public domain, from Wikimedia Commons)
   assets/products/       product photo cutouts, see the README there for sources
   styles/globals.css     Tailwind entry point and theme tokens
-public/                  favicons and site.webmanifest
+public/                  favicons, site.webmanifest, og-image.png (link preview card)
 ```
 
 ## Things to know before editing
