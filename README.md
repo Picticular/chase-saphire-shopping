@@ -1,9 +1,10 @@
 # chase-sapphire-shopping
 
-Landing page for Chase Sapphire Shopping, the browser extension that applies coupon codes
-at checkout, compares prices, watches for price drops and pays rewards. The page structure
-follows the Capital One Shopping landing page; the look (purple gradient, Montserrat,
-full-screen snap-scrolling sections, spring entrance animations) comes from
+Landing page for the Chase Sapphire offer inside [Picticular](https://picticular.com), the
+movie app: $50 off your first purchase with a new Chase Sapphire credit card, and $10 off
+every movie ticket paid with a Chase credit card. The page structure follows the Capital One
+Shopping landing page; the look (purple gradient, Montserrat, full-screen snap-scrolling
+sections, spring entrance animations) comes from
 [chase-web-guide](https://github.com/Picticular/chase-web-guide).
 
 Built with Next.js (Pages Router, static export), React 19, Tailwind 4 and framer-motion.
@@ -51,7 +52,7 @@ serves Pages from public repos.
 
 ```
 src/
-  content/brand.ts       product name, URLs, stats, legal text. Edit this to rebrand.
+  content/brand.ts       names, URLs, the two offer amounts, legal text. Edit this to rebrand.
   content/products.ts    static imports of the product cutouts in assets/products
   pages/
     index.tsx            meta tags, favicon links, Layout + Sections
@@ -63,15 +64,15 @@ src/
     SectionHeading.tsx   animated h2 + lead paragraph shared by every section
     Sections/
       Sections.tsx       renders the sections in order
-      Hero.tsx           headline, install CTA, product cutouts floating around and off the edges
+      Hero.tsx           headline, app CTA, product cutouts floating around and off the edges
       FloatingProduct.tsx  one cutout with its round "saved." coin and drift animation
       ProductLayer.tsx   decorative layer of cutouts behind a section; every section has one
-      HowItWorks.tsx     two-click explainer
-      Coupons.tsx        animated "tested N codes" widget
-      PriceComparison.tsx  same item at three stores, best price highlighted
-      PriceDrop.tsx      price watch card
-      Rewards.tsx        earn on purchases, redeem for gift cards
-      Signup.tsx         email reminder form (see below)
+      HowItWorks.tsx     three-step explainer (download, add card, check out)
+      WelcomeOffer.tsx   $50 welcome offer with an animated checkout card
+      TicketOffer.tsx    $10 off every ticket, ticket receipt card
+      AppFeatures.tsx    Picticular's swipe / watch / share / win features
+      Win.tsx            Lit List prizes next to the two Chase offers
+      Signup.tsx         email form for the app download link (see below)
   assets/                Chase logo SVGs (public domain, from Wikimedia Commons)
   assets/products/       product photo cutouts, see the README there for sources
   styles/globals.css     Tailwind entry point and theme tokens
@@ -80,8 +81,11 @@ public/                  favicons, site.webmanifest, og-image.png (link preview 
 
 ## Things to know before editing
 
-- **The install button and footer links are placeholders** (`installUrl: '#'` and
-  `href: '#'` in `brand.ts`). Fill them in once the extension is listed.
+- **Copy is a rough-in.** The offer amounts and card names live in `brand.offer`; the
+  client has not signed off on wording, and the app-store links go to picticular.com
+  (`appUrl`) until real ones exist. Footer links are `#` placeholders.
+- **The product cutouts are shopping imagery** from the Capital One reference. Movie-themed
+  art (tickets, popcorn, the app on a phone) should replace them.
 - **The signup form has no backend.** This is a static export, so `Signup.tsx` only flips
   to a thank-you state on submit. Point the form at a real endpoint (or a marketplace
   email/CRM integration) before launch.

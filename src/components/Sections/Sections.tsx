@@ -1,10 +1,10 @@
-import Coupons from '@/components/Sections/Coupons';
+import AppFeatures from '@/components/Sections/AppFeatures';
 import Hero from '@/components/Sections/Hero';
 import HowItWorks from '@/components/Sections/HowItWorks';
-import PriceComparison from '@/components/Sections/PriceComparison';
-import PriceDrop from '@/components/Sections/PriceDrop';
-import Rewards from '@/components/Sections/Rewards';
 import Signup from '@/components/Sections/Signup';
+import TicketOffer from '@/components/Sections/TicketOffer';
+import WelcomeOffer from '@/components/Sections/WelcomeOffer';
+import Win from '@/components/Sections/Win';
 import type React from 'react';
 
 interface Props {
@@ -16,10 +16,10 @@ const Sections = ({ scrollRef }: Props) => {
     <div className="relative block h-[100%] w-full">
       <Hero scrollRef={scrollRef} />
       <HowItWorks scrollRef={scrollRef} />
-      <Coupons scrollRef={scrollRef} />
-      <PriceComparison scrollRef={scrollRef} />
-      <PriceDrop scrollRef={scrollRef} />
-      <Rewards scrollRef={scrollRef} />
+      <WelcomeOffer scrollRef={scrollRef} />
+      <TicketOffer scrollRef={scrollRef} />
+      <AppFeatures scrollRef={scrollRef} />
+      <Win scrollRef={scrollRef} />
       <Signup scrollRef={scrollRef} />
     </div>
   );

@@ -25,10 +25,10 @@ const Header = ({ id }: Props) => {
         </h1>
         <div className="flex items-center gap-5">
           <a
-            href={brand.installUrl}
+            href={brand.appUrl}
             className="hidden rounded-full bg-white px-4 py-1.5 text-sm font-bold text-purple-700 transition-opacity duration-150 ease-in hover:opacity-90 focus-visible:opacity-90 sm:inline-block"
           >
-            Add to Chrome
+            Get the app
           </a>
           <a
             href={brand.contactUrl}

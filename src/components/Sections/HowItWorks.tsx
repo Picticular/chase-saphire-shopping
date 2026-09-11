@@ -6,7 +6,7 @@ import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
 import { productPhotos } from '@/content/products';
 import type React from 'react';
-import { FaCartShopping, FaPuzzlePiece } from 'react-icons/fa6';
+import { FaCreditCard, FaMobileScreenButton, FaTicket } from 'react-icons/fa6';
 
 interface Props {
   scrollRef?: React.RefObject<HTMLElement | null>;
@@ -14,14 +14,19 @@ interface Props {
 
 const steps = [
   {
-    Icon: FaPuzzlePiece,
-    title: 'Add the extension',
-    body: `One click installs ${brand.product} in your browser. No account needed to start saving.`,
+    Icon: FaMobileScreenButton,
+    title: `Download ${brand.partner}`,
+    body: `Free from ${brand.partnerUrl.replace('https://', '')}. Swipe through ${brand.stats.titles} titles and see where each one is playing or streaming.`,
   },
   {
-    Icon: FaCartShopping,
-    title: 'Click "Apply" at checkout',
-    body: 'When you reach a checkout page we pop up, test every code we know, and keep the one that saves you the most.',
+    Icon: FaCreditCard,
+    title: 'Add your Chase card',
+    body: `Set your ${brand.offer.welcomeCard} as the payment method in the app. Any Chase credit card unlocks the ticket offer.`,
+  },
+  {
+    Icon: FaTicket,
+    title: 'Check out',
+    body: `${brand.offer.welcome} comes off your first purchase automatically. After that, every ticket is ${brand.offer.ticket} off.`,
   },
 ];
 
@@ -52,15 +57,20 @@ const HowItWorks = ({ scrollRef: ref }: Props) => {
           id="how-title"
           title={
             <>
-              <Accent scrollRef={ref}>Two clicks</Accent> is all it takes to save with {brand.product}.
+              <Accent scrollRef={ref}>Three taps</Accent> is all it takes to save with {brand.issuer} in {brand.partner}
+              .
             </>
           }
           scrollRef={ref}
         />
-        <ol className="grid w-full max-w-4xl gap-5 md:grid-cols-2">
+        <ol className="grid w-full max-w-5xl gap-5 md:grid-cols-3">
           {steps.map((step, index) => (
             <li key={step.title}>
-              <Reveal direction={index === 0 ? 'left' : 'right'} delay={0.3 + index * 0.2} scrollRef={ref}>
+              <Reveal
+                direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'}
+                delay={0.3 + index * 0.2}
+                scrollRef={ref}
+              >
                 <div className="flex h-full gap-4 rounded-2xl bg-white/10 p-6 text-white backdrop-blur-sm">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-purple-700">
                     <step.Icon aria-hidden="true" />

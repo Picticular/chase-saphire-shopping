@@ -50,16 +50,16 @@ const Signup = ({ scrollRef: ref }: Props) => {
           id="signup-title"
           title={
             <>
-              On your phone? Sign up for a <Accent scrollRef={ref}>desktop reminder.</Accent>
+              Get the app and <Accent scrollRef={ref}>claim your {brand.offer.welcome}.</Accent>
             </>
           }
-          lead={`${brand.product} runs in your desktop browser. Leave your email and we'll send a one-time link to install it when you're back at your computer.`}
+          lead={`${brand.partner} lives on your phone. Leave your email and we'll send a one-time link to download it and add your Chase card.`}
           scrollRef={ref}
         />
         <Reveal direction="up" delay={0.3} className="w-full max-w-lg" scrollRef={ref}>
           {submitted ? (
             <p className="rounded-2xl bg-white/10 p-6 text-center text-lg font-bold text-white" aria-live="polite">
-              Thanks! Check your inbox for the install link.
+              Thanks! Check your inbox for the download link.
             </p>
           ) : (
             <form onSubmit={onSubmit} className="flex flex-col gap-3 sm:flex-row">
@@ -86,7 +86,7 @@ const Signup = ({ scrollRef: ref }: Props) => {
                 type="submit"
                 className="rounded-full bg-purple-200 px-7 py-4 font-bold text-purple-900 transition-transform duration-150 ease-out hover:scale-[1.03] focus-visible:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
-                Sign up. It's free.
+                Send me the link.
               </button>
             </form>
           )}
@@ -94,9 +94,7 @@ const Signup = ({ scrollRef: ref }: Props) => {
         <div className="hidden lg:block">
           <InstallButton />
         </div>
-        <p className="max-w-3xl text-center text-xs leading-relaxed text-purple-200">
-          {brand.legal} {brand.product} is built with love in {brand.builtIn}.
-        </p>
+        <p className="max-w-3xl text-center text-xs leading-relaxed text-purple-200">{brand.legal}</p>
         <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 text-xs text-purple-200 sm:hidden">
           {brand.footerLinks.map(link => (
             <a key={link.label} href={link.href} className="underline">

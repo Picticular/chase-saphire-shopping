@@ -81,20 +81,23 @@ const Hero = ({ scrollRef: ref }: Props) => {
           className="text-3xl font-bold uppercase leading-none md:text-5xl lg:text-[3.75vw] lg:leading-[0.9]"
           {...enter(0)}
         >
-          {brand.product} checks for deals <span className="text-purple-200">before</span> you checkout.
+          Get <span className="text-purple-200">{brand.offer.welcome} off</span> your first {brand.partner} purchase
+          with a new Chase Sapphire card.
         </motion.h2>
         <motion.p
           className="mt-5 max-w-xl text-base leading-snug text-purple-100 md:text-xl lg:text-2xl"
           {...enter(0.3)}
         >
-          {brand.product} is a free browser extension that automatically applies coupon codes at checkout and lets you
-          know when prices drop on products you've viewed and purchased.
+          {brand.partner} puts {brand.stats.titles} movies in your pocket: see where every title streams, match with
+          friends and grab tickets. Pay with your new {brand.offer.welcomeCard} and your first purchase is{' '}
+          {brand.offer.welcome} off.
         </motion.p>
         <motion.div className="mt-8" {...enter(0.5)}>
           <InstallButton />
         </motion.div>
         <motion.p className="mt-4 text-sm text-purple-200 md:text-base" {...enter(0.7)}>
-          Shoppers saved over <strong className="font-bold text-white">{brand.stats.savedLastYear}</strong> last year.
+          Plus <strong className="font-bold text-white">{brand.offer.ticket} off every movie ticket</strong> when you
+          pay with your {brand.offer.ticketCard}.
         </motion.p>
       </div>
 

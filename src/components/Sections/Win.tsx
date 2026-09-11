@@ -7,13 +7,11 @@ import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
 import { productPhotos } from '@/content/products';
 import type React from 'react';
-import { FaCoins, FaGift } from 'react-icons/fa6';
+import { FaCreditCard, FaTrophy } from 'react-icons/fa6';
 
 interface Props {
   scrollRef?: React.RefObject<HTMLElement | null>;
 }
-
-const retailers = brand.rewardRetailers.join(' and ');
 
 /** Desktop only, and only when the viewport is tall enough. */
 const products: Product[] = [
@@ -33,61 +31,55 @@ const products: Product[] = [
   },
 ];
 
-const Rewards = ({ scrollRef: ref }: Props) => {
+const Win = ({ scrollRef: ref }: Props) => {
   return (
-    <Frame aria-labelledby="rewards-title" className="overflow-hidden">
+    <Frame aria-labelledby="win-title" className="overflow-hidden">
       <ProductLayer products={products} scrollRef={ref} />
       <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:px-20">
         <SectionHeading
-          id="rewards-title"
+          id="win-title"
           title={
             <>
-              Rewards with a <Accent scrollRef={ref}>click.</Accent>
+              Win more than <Accent scrollRef={ref}>movie night.</Accent>
             </>
           }
-          lead={`Click and earn Rewards for your purchases on popular sites like ${retailers}. Use your Shopping Rewards to buy gift cards from the brands you already love.`}
+          lead={`Add titles to your Lit List and ${brand.partner} enters you for rewards, prizes and invites to premieres. Your Chase offers sit on top of all of it.`}
           scrollRef={ref}
         />
         <div className="grid w-full max-w-4xl gap-5 md:grid-cols-2">
           <Reveal direction="left" delay={0.3} scrollRef={ref}>
             <Card className="h-full">
               <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-purple-700">
-                <FaCoins aria-hidden="true" /> Earn
+                <FaTrophy aria-hidden="true" /> Lit List
               </p>
               <ul className="mt-4 space-y-2">
-                {brand.rewardRetailers.map((store, i) => (
-                  <li key={store} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-3">
-                    <span className="font-bold">{store}</span>
-                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-700">
-                      up to {i === 0 ? '4' : '2'}% back
-                    </span>
+                {[
+                  ['Rewards and prizes', 'drawn from your list'],
+                  ['Premieres', 'invites to screenings'],
+                  ['Exclusive events', 'members only'],
+                ].map(([item, note]) => (
+                  <li key={item} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-3">
+                    <span className="font-bold">{item}</span>
+                    <span className="text-xs text-slate-500">{note}</span>
                   </li>
                 ))}
-                <li className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-3">
-                  <span className="font-bold">Thousands more</span>
-                  <span className="text-xs text-slate-500">activate at checkout</span>
-                </li>
               </ul>
             </Card>
           </Reveal>
           <Reveal direction="right" delay={0.5} scrollRef={ref}>
             <Card className="h-full">
               <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-purple-700">
-                <FaGift aria-hidden="true" /> Redeem
+                <FaCreditCard aria-hidden="true" /> Your Chase offers
               </p>
               <div className="mt-4 rounded-xl bg-purple-50 p-4">
-                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Your Shopping Rewards</p>
-                <p className="mt-1 text-3xl font-bold text-purple-700">$42.15</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">First purchase</p>
+                <p className="mt-1 text-3xl font-bold text-purple-700">{brand.offer.welcome} off</p>
+                <p className="mt-1 text-sm text-slate-600">with a new {brand.offer.welcomeCard}</p>
               </div>
-              <p className="mt-4 text-sm text-slate-600">
-                Turn your balance into gift cards for dining, travel, and retail.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {['Restaurants', 'Airlines', 'Home', 'Electronics'].map(tag => (
-                  <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
-                    {tag}
-                  </span>
-                ))}
+              <div className="mt-3 rounded-xl bg-emerald-100 p-4">
+                <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">Every movie ticket</p>
+                <p className="mt-1 text-3xl font-bold text-emerald-700">{brand.offer.ticket} off</p>
+                <p className="mt-1 text-sm text-slate-600">with any {brand.offer.ticketCard}</p>
               </div>
             </Card>
           </Reveal>
@@ -97,4 +89,4 @@ const Rewards = ({ scrollRef: ref }: Props) => {
   );
 };
 
-export default Rewards;
+export default Win;

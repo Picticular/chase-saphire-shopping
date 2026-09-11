@@ -1,12 +1,12 @@
 import { brand } from '@/content/brand';
-import { FaChrome } from 'react-icons/fa6';
+import { FaMobileScreenButton } from 'react-icons/fa6';
 
 interface Props {
   label?: string;
   className?: string;
 }
 
-const InstallButton = ({ label = "Add to Chrome. It's free.", className }: Props) => {
+const InstallButton = ({ label = `Get the ${brand.partner} app`, className }: Props) => {
   const classNames = [
     'inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-lg font-bold text-purple-700 shadow-xl shadow-black/30 transition-transform duration-150 ease-out hover:scale-[1.03] focus-visible:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white',
     className,
@@ -15,8 +15,8 @@ const InstallButton = ({ label = "Add to Chrome. It's free.", className }: Props
     .join(' ');
 
   return (
-    <a href={brand.installUrl} className={classNames}>
-      <FaChrome className="text-2xl" aria-hidden="true" />
+    <a href={brand.appUrl} className={classNames}>
+      <FaMobileScreenButton className="text-2xl" aria-hidden="true" />
       {label}
     </a>
   );

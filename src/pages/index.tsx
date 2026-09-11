@@ -4,8 +4,8 @@ import { brand } from '@/content/brand';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const title = `${brand.product} - Coupons, price comparison and rewards`;
-const description = `${brand.product} is a free browser extension that applies coupon codes at checkout, compares prices, watches for price drops and earns you rewards.`;
+const title = `${brand.product} - ${brand.offer.welcome} off your first ${brand.partner} purchase`;
+const description = `Pay with a new ${brand.offer.welcomeCard} in the ${brand.partner} movie app and your first purchase is ${brand.offer.welcome} off. Plus ${brand.offer.ticket} off every movie ticket with any ${brand.offer.ticketCard}.`;
 // Link previews need absolute URLs; SITE_URL is inlined at build time from next.config.mjs.
 const siteUrl = process.env.SITE_URL ?? '';
 
@@ -27,7 +27,7 @@ export default function Home() {
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image:alt"
-          content={`${brand.product}: checks for deals before you checkout. Product photos with amounts saved.`}
+          content={`${brand.product}: ${brand.offer.welcome} off your first ${brand.partner} purchase, ${brand.offer.ticket} off every movie ticket.`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
