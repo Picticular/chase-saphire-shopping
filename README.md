@@ -18,9 +18,8 @@ bun install
 bun run dev
 ```
 
-Open http://localhost:3000/chase-sapphire-shopping. The `/chase-sapphire-shopping` prefix is
-the `basePath` in `next.config.mjs` and matches the GitHub Pages path, so the bare root 404s
-in dev too.
+Open http://localhost:3000. There is no `basePath`: the site is served from the root of its
+own domain.
 
 | Command             | What it does                           |
 | ------------------- | -------------------------------------- |
@@ -32,7 +31,18 @@ in dev too.
 ## Deploying
 
 Push to `main`. `.github/workflows/nextjs.yml` installs with Bun, runs lint and typecheck,
-builds, and publishes `out/` to GitHub Pages. No environment variables.
+builds, and publishes `out/` to GitHub Pages at https://sapphire.picticular.com. No
+environment variables.
+
+The custom domain is `public/CNAME` plus the Pages setting on the repo. DNS for
+picticular.com lives at ezhostingserver.com and needs one record:
+
+```
+sapphire  CNAME  picticular.github.io
+```
+
+The repo is public because the Picticular org is on GitHub's free plan, which only
+serves Pages from public repos.
 
 ## Where things live
 
@@ -76,9 +86,9 @@ public/                  favicons and site.webmanifest
   Commons for layout purposes. Replace with client-supplied brand assets, and regenerate
   the PNG favicons in `public/` from the final mark.
 - **Assets must be imported, not referenced by path.** Every image and SVG is a static
-  import from `src/assets`. That is what makes the `basePath` prefix apply on GitHub Pages.
-- **Files in `public/` need the base path.** `index.tsx` builds favicon and manifest hrefs
-  from `useRouter().basePath`.
+  import from `src/assets`, so a `basePath` could be reintroduced without touching
+  components. `index.tsx` already prefixes favicon and manifest hrefs with
+  `useRouter().basePath`.
 - **Adding a section** means a new file in `src/components/Sections/` (copy an existing one
   for the `Frame` + `SectionHeading` setup, keep the `aria-labelledby` wiring) and one more
   line in `Sections.tsx`.
