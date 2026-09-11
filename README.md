@@ -18,8 +18,8 @@ bun install
 bun run dev
 ```
 
-Open http://localhost:3000. There is no `basePath`: the site is served from the root of its
-own domain.
+Open http://localhost:3000. `basePath` comes from the `BASE_PATH` env var and is empty in
+dev.
 
 | Command             | What it does                           |
 | ------------------- | -------------------------------------- |
@@ -31,15 +31,18 @@ own domain.
 ## Deploying
 
 Push to `main`. `.github/workflows/nextjs.yml` installs with Bun, runs lint and typecheck,
-builds, and publishes `out/` to GitHub Pages at https://sapphire.picticular.com. No
-environment variables.
+builds, and publishes `out/` to GitHub Pages. Until the custom domain is live the site is
+at https://picticular.github.io/chase-saphire-shopping/ and the workflow sets
+`BASE_PATH=/chase-saphire-shopping` for the build.
 
-The custom domain is `public/CNAME` plus the Pages setting on the repo. DNS for
-picticular.com lives at ezhostingserver.com and needs one record:
+### Moving to sapphire.picticular.com
 
-```
-sapphire  CNAME  picticular.github.io
-```
+1. Add a DNS record at ezhostingserver.com: `sapphire  CNAME  picticular.github.io`.
+2. Delete the `BASE_PATH` env from the build step in `.github/workflows/nextjs.yml`.
+3. Set the custom domain: `gh api -X PUT repos/Picticular/chase-saphire-shopping/pages -f cname=sapphire.picticular.com`,
+   then tick "Enforce HTTPS" in Settings → Pages once the DNS check passes.
+
+GitHub Pages serves one URL per site, so the github.io address stops working at step 3.
 
 The repo is public because the Picticular org is on GitHub's free plan, which only
 serves Pages from public repos.
