@@ -12,8 +12,11 @@ export const brand = {
   /** The app the offers live in. */
   partner: 'Picticular',
   partnerUrl: 'https://picticular.com',
-  /** Where "get the app" buttons go. Picticular's site handles the store links. */
+  /** Where the header "Get the app" link goes. */
   appUrl: 'https://picticular.com',
+  /** Store listings, as linked from picticular.com. */
+  appStoreUrl: 'https://apps.apple.com/us/app/picticular/id1490417069',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.innovatorm.picticulardev2',
   /** Where the header logo links. */
   homeUrl: 'https://www.chase.com/',
   /** Contact link in the header. */

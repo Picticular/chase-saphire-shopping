@@ -1,7 +1,7 @@
 import Frame from '@/components/Frame';
-import InstallButton from '@/components/InstallButton';
 import type { Product } from '@/components/Sections/FloatingProduct';
 import ProductLayer from '@/components/Sections/ProductLayer';
+import StoreBadges from '@/components/StoreBadges';
 import { brand } from '@/content/brand';
 import { productPhotos } from '@/content/products';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -93,7 +93,7 @@ const Hero = ({ scrollRef: ref }: Props) => {
           {brand.offer.welcome} off.
         </motion.p>
         <motion.div className="mt-8" {...enter(0.5)}>
-          <InstallButton />
+          <StoreBadges className="lg:justify-start" />
         </motion.div>
         <motion.p className="mt-4 text-sm text-purple-200 md:text-base" {...enter(0.7)}>
           Plus <strong className="font-bold text-white">{brand.offer.ticket} off every movie ticket</strong> when you

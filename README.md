@@ -57,6 +57,7 @@ src/
   pages/
     index.tsx            meta tags, favicon links, Layout + Sections
   components/
+    StoreBadges.tsx      App Store + Google Play badges, linked to the listings
     Layout.tsx           header, snap-scrolling <main>, fixed footer
     Header.tsx           Chase logo + contact link
     Footer.tsx           copyright, footer links
@@ -64,7 +65,7 @@ src/
     SectionHeading.tsx   animated h2 + lead paragraph shared by every section
     Sections/
       Sections.tsx       renders the sections in order
-      Hero.tsx           headline, app CTA, product cutouts floating around and off the edges
+      Hero.tsx           headline, store badges, product cutouts floating around and off the edges
       FloatingProduct.tsx  one cutout with its round "saved." coin and drift animation
       ProductLayer.tsx   decorative layer of cutouts behind a section; every section has one
       HowItWorks.tsx     three-step explainer (download, add card, check out)
@@ -73,7 +74,8 @@ src/
       AppFeatures.tsx    Picticular's swipe / watch / share / win features
       Win.tsx            Lit List prizes next to the two Chase offers
       Signup.tsx         email form for the app download link (see below)
-  assets/                Chase logo SVGs (public domain, from Wikimedia Commons)
+  assets/                Chase logo SVGs (public domain, from Wikimedia Commons), official
+                         App Store and Google Play badges (unmodified, per store guidelines)
   assets/products/       product photo cutouts, see the README there for sources
   styles/globals.css     Tailwind entry point and theme tokens
 public/                  favicons, site.webmanifest, og-image.png (link preview card)
@@ -82,8 +84,8 @@ public/                  favicons, site.webmanifest, og-image.png (link preview 
 ## Things to know before editing
 
 - **Copy is a rough-in.** The offer amounts and card names live in `brand.offer`; the
-  client has not signed off on wording, and the app-store links go to picticular.com
-  (`appUrl`) until real ones exist. Footer links are `#` placeholders.
+  client has not signed off on wording, and the store badges link to the listings picticular.com
+  uses (`appStoreUrl`, `playStoreUrl`). Footer links are `#` placeholders.
 - **The product cutouts are shopping imagery** from the Capital One reference. Movie-themed
   art (tickets, popcorn, the app on a phone) should replace them.
 - **The signup form has no backend.** This is a static export, so `Signup.tsx` only flips

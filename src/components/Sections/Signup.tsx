@@ -1,9 +1,9 @@
 import Frame from '@/components/Frame';
-import InstallButton from '@/components/InstallButton';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
 import type { Product } from '@/components/Sections/FloatingProduct';
 import ProductLayer from '@/components/Sections/ProductLayer';
+import StoreBadges from '@/components/StoreBadges';
 import { brand } from '@/content/brand';
 import { productPhotos } from '@/content/products';
 import type React from 'react';
@@ -91,9 +91,7 @@ const Signup = ({ scrollRef: ref }: Props) => {
             </form>
           )}
         </Reveal>
-        <div className="hidden lg:block">
-          <InstallButton />
-        </div>
+        <StoreBadges />
         <p className="max-w-3xl text-center text-xs leading-relaxed text-purple-200">{brand.legal}</p>
         <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-4 text-xs text-purple-200 sm:hidden">
           {brand.footerLinks.map(link => (
