@@ -1,28 +1,16 @@
-import Card from '@/components/Card';
+import appHome from '@/assets/app/home.webp';
+import appSplash from '@/assets/app/splash.webp';
 import Frame from '@/components/Frame';
+import PhoneFrame from '@/components/PhoneFrame';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
-import type { Product } from '@/components/Sections/FloatingProduct';
-import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
-import { productPhotos } from '@/content/products';
 import type React from 'react';
 import { FaHandPointer, FaPlay, FaShareNodes, FaTrophy } from 'react-icons/fa6';
 
 interface Props {
   scrollRef?: React.RefObject<HTMLElement | null>;
 }
-
-/** Desktop only, and only when the viewport is tall enough. */
-const products: Product[] = [
-  {
-    name: 'Camera',
-    saved: '$140',
-    image: productPhotos.camera,
-    className: 'hidden lg:tall:block top-[8%] right-[-10vw] w-[min(36vw,55vh)] max-w-[440px]',
-    coin: 'top-[30%] left-[15%]',
-  },
-];
 
 /** Feature list from picticular.com. */
 const features = [
@@ -51,7 +39,6 @@ const features = [
 const AppFeatures = ({ scrollRef: ref }: Props) => {
   return (
     <Frame aria-labelledby="features-title" className="overflow-hidden">
-      <ProductLayer products={products} scrollRef={ref} />
       <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:flex-row lg:gap-16 lg:px-10">
         <div className="lg:w-1/2">
           <SectionHeading
@@ -61,28 +48,50 @@ const AppFeatures = ({ scrollRef: ref }: Props) => {
                 Every movie you love, <Accent scrollRef={ref}>in one app.</Accent>
               </>
             }
-            lead={`${brand.partner} is where movie night starts. Find what to watch, see where it's playing, buy the tickets and settle the "what are we watching" argument with your friends, all in one place.`}
+            lead={`${brand.partner} is where movie night starts. Find what to watch, see where it's playing, buy the tickets and settle the "what are we watching" argument with your friends.`}
             align="left"
             scrollRef={ref}
           />
+          <ul className="mt-6 grid grid-cols-2 gap-3 text-white lg:mt-8">
+            {features.map((f, index) => (
+              <li key={f.title}>
+                <Reveal direction="up" delay={0.4 + index * 0.1} scrollRef={ref} className="h-full">
+                  <div className="flex h-full gap-3 rounded-xl bg-white/10 p-3 backdrop-blur-sm">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-purple-700">
+                      <f.Icon aria-hidden="true" />
+                    </span>
+                    <span className="leading-tight">
+                      <span className="block font-bold">{f.title}</span>
+                      <span className="block text-xs text-purple-100 sm:text-sm">{f.body}</span>
+                    </span>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </div>
-        <Reveal direction="right" className="w-full max-w-md lg:w-1/2" scrollRef={ref}>
-          <Card>
-            <ul className="space-y-3">
-              {features.map(f => (
-                <li key={f.title} className="flex gap-4 rounded-xl bg-slate-50 p-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-purple-100 text-lg text-purple-700">
-                    <f.Icon aria-hidden="true" />
-                  </span>
-                  <span className="leading-tight">
-                    <span className="block font-bold">{f.title}</span>
-                    <span className="block text-sm text-slate-600">{f.body}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </Reveal>
+        <div className="relative flex w-full items-end justify-center lg:w-1/2">
+          <Reveal
+            direction="right"
+            delay={0.2}
+            scrollRef={ref}
+            className="relative z-10 w-[34%] max-w-[280px] sm:w-[44%]"
+          >
+            <PhoneFrame screenshot={appHome} alt={`${brand.partner} home screen: swipe through movie posters`} />
+          </Reveal>
+          <Reveal
+            direction="right"
+            delay={0.45}
+            scrollRef={ref}
+            className="-ml-[8%] mb-[10%] hidden w-[40%] max-w-[240px] sm:block"
+          >
+            <PhoneFrame
+              screenshot={appSplash}
+              alt={`${brand.partner} on Android: the Get Ready splash screen`}
+              variant="android"
+            />
+          </Reveal>
+        </div>
       </div>
     </Frame>
   );

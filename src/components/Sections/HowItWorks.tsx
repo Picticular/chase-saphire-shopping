@@ -70,6 +70,7 @@ const HowItWorks = ({ scrollRef: ref }: Props) => {
                 direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'}
                 delay={0.3 + index * 0.2}
                 scrollRef={ref}
+                className="h-full"
               >
                 <div className="flex h-full gap-4 rounded-2xl bg-white/10 p-6 text-white backdrop-blur-sm">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-purple-700">

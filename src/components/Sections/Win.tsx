@@ -47,7 +47,7 @@ const Win = ({ scrollRef: ref }: Props) => {
           scrollRef={ref}
         />
         <div className="grid w-full max-w-4xl gap-5 md:grid-cols-2">
-          <Reveal direction="left" delay={0.3} scrollRef={ref}>
+          <Reveal direction="left" delay={0.3} scrollRef={ref} className="h-full">
             <Card className="h-full">
               <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-purple-700">
                 <FaTrophy aria-hidden="true" /> Lit List
@@ -66,7 +66,7 @@ const Win = ({ scrollRef: ref }: Props) => {
               </ul>
             </Card>
           </Reveal>
-          <Reveal direction="right" delay={0.5} scrollRef={ref}>
+          <Reveal direction="right" delay={0.5} scrollRef={ref} className="h-full">
             <Card className="h-full">
               <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-purple-700">
                 <FaCreditCard aria-hidden="true" /> Your Chase offers

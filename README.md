@@ -58,6 +58,7 @@ src/
     index.tsx            meta tags, favicon links, Layout + Sections
   components/
     StoreBadges.tsx      App Store + Google Play badges, linked to the listings
+    PhoneFrame.tsx       CSS phone bezel (iPhone or Android) around an app screenshot
     Layout.tsx           header, snap-scrolling <main>, fixed footer
     Header.tsx           Chase logo + contact link
     Footer.tsx           copyright, footer links
@@ -71,9 +72,10 @@ src/
       HowItWorks.tsx     three-step explainer (download, add card, check out)
       WelcomeOffer.tsx   $50 welcome offer with an animated checkout card
       TicketOffer.tsx    $10 off every ticket, ticket receipt card
-      AppFeatures.tsx    Picticular's swipe / watch / share / win features
+      AppFeatures.tsx    Picticular's swipe / watch / share / win features, app screenshots in phone frames
       Win.tsx            Lit List prizes next to the two Chase offers
       Signup.tsx         email form for the app download link (see below)
+  assets/app/            Picticular screenshots from the iPhone simulator, 640px WebP
   assets/                Chase logo SVGs (public domain, from Wikimedia Commons), official
                          App Store and Google Play badges (unmodified, per store guidelines)
   assets/products/       product photo cutouts, see the README there for sources
@@ -86,6 +88,10 @@ public/                  favicons, site.webmanifest, og-image.png (link preview 
 - **Copy is a rough-in.** The offer amounts and card names live in `brand.offer`; the
   client has not signed off on wording, and the store badges link to the listings picticular.com
   uses (`appStoreUrl`, `playStoreUrl`). Footer links are `#` placeholders.
+- **App screenshots** come from the iPhone 17 simulator (`xcrun simctl io booted screenshot`,
+  status bar overridden to 9:41 with `simctl status_bar`). Resize to 640px wide and save as
+  WebP into `src/assets/app/`. The Android frame reuses an iOS screenshot and paints its own
+  status bar over the iOS one.
 - **The product cutouts are shopping imagery** from the Capital One reference. Movie-themed
   art (tickets, popcorn, the app on a phone) should replace them.
 - **The signup form has no backend.** This is a static export, so `Signup.tsx` only flips
