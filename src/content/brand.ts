@@ -30,5 +30,8 @@ export const brand = {
   ],
   legal:
     'Rewards are subject to terms and conditions. Savings may vary. Sample results shown. All trademarks are the property of their respective owners.',
+  /** Shown in the fixed footer under the product photos. */
+  trademarkNotice:
+    'Product images and logos are trademarks of their respective owners, shown for illustration only. Sample results shown.',
   copyrightHolder: 'Chase Sapphire Shopping',
 } as const;

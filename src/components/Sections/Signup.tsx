@@ -2,7 +2,10 @@ import Frame from '@/components/Frame';
 import InstallButton from '@/components/InstallButton';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
+import type { Product } from '@/components/Sections/FloatingProduct';
+import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
+import { productPhotos } from '@/content/products';
 import type React from 'react';
 import { type FormEvent, useState } from 'react';
 import { FaEnvelope } from 'react-icons/fa6';
@@ -10,6 +13,24 @@ import { FaEnvelope } from 'react-icons/fa6';
 interface Props {
   scrollRef?: React.RefObject<HTMLElement | null>;
 }
+
+/** Desktop only, and only when the viewport is tall enough. */
+const products: Product[] = [
+  {
+    name: 'Running shoes',
+    saved: '$28',
+    image: productPhotos.runningShoes,
+    className: 'hidden lg:tall:block bottom-[4%] left-[-14vw] w-[min(42vw,60vh)] max-w-[900px]',
+    coin: 'top-[58%] left-[78%]',
+  },
+  {
+    name: 'Headphones',
+    saved: '$61',
+    image: productPhotos.headphones,
+    className: 'hidden lg:tall:block top-[-8%] right-[-8vw] w-[min(24vw,50vh)] max-w-[520px]',
+    coin: 'top-[62%] left-[35%]',
+  },
+];
 
 const Signup = ({ scrollRef: ref }: Props) => {
   const [email, setEmail] = useState('');
@@ -22,8 +43,9 @@ const Signup = ({ scrollRef: ref }: Props) => {
   };
 
   return (
-    <Frame aria-labelledby="signup-title">
-      <div className="flex grow w-full flex-col items-center justify-center gap-8 pt-6 pb-16 lg:px-20">
+    <Frame aria-labelledby="signup-title" className="overflow-hidden">
+      <ProductLayer products={products} scrollRef={ref} />
+      <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 pb-16 lg:px-20">
         <SectionHeading
           id="signup-title"
           title={

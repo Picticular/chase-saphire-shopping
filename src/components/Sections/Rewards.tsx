@@ -2,7 +2,10 @@ import Card from '@/components/Card';
 import Frame from '@/components/Frame';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
+import type { Product } from '@/components/Sections/FloatingProduct';
+import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
+import { productPhotos } from '@/content/products';
 import type React from 'react';
 import { FaCoins, FaGift } from 'react-icons/fa6';
 
@@ -12,10 +15,29 @@ interface Props {
 
 const retailers = brand.rewardRetailers.join(' and ');
 
+/** Desktop only, and only when the viewport is tall enough. */
+const products: Product[] = [
+  {
+    name: 'Laptop',
+    saved: '$210',
+    image: productPhotos.laptop,
+    className: 'hidden lg:tall:block bottom-[-14%] right-[-20vw] w-[min(44vw,70vh)] max-w-[900px]',
+    coin: 'top-[35%] left-[20%]',
+  },
+  {
+    name: 'Sunglasses',
+    saved: '$35',
+    image: productPhotos.sunglasses,
+    className: 'hidden lg:tall:block rotate-12 top-[10%] left-[-6vw] w-[min(26vw,40vh)] max-w-[620px]',
+    coin: '-rotate-12 top-[55%] left-[75%]',
+  },
+];
+
 const Rewards = ({ scrollRef: ref }: Props) => {
   return (
-    <Frame aria-labelledby="rewards-title">
-      <div className="flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:px-20">
+    <Frame aria-labelledby="rewards-title" className="overflow-hidden">
+      <ProductLayer products={products} scrollRef={ref} />
+      <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:px-20">
         <SectionHeading
           id="rewards-title"
           title={

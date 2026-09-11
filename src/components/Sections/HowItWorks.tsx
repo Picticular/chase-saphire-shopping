@@ -1,7 +1,10 @@
 import Frame from '@/components/Frame';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
+import type { Product } from '@/components/Sections/FloatingProduct';
+import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
+import { productPhotos } from '@/content/products';
 import type React from 'react';
 import { FaCartShopping, FaPuzzlePiece } from 'react-icons/fa6';
 
@@ -22,10 +25,29 @@ const steps = [
   },
 ];
 
+/** Desktop only, and only when the viewport is tall enough; phones keep this section clean. */
+const products: Product[] = [
+  {
+    name: 'Game controller',
+    saved: '$12',
+    image: productPhotos.gameController,
+    className: 'hidden lg:tall:block -rotate-12 bottom-[-18%] left-[-14vw] w-[min(40vw,70vh)] max-w-[560px]',
+    coin: 'rotate-12 top-[25%] left-[70%]',
+  },
+  {
+    name: 'Wireless mouse',
+    saved: '$9',
+    image: productPhotos.wirelessMouse,
+    className: 'hidden lg:tall:block top-[8%] right-[-2vw] w-[min(30vw,40vh)]',
+    coin: 'top-[20%] left-[50%]',
+  },
+];
+
 const HowItWorks = ({ scrollRef: ref }: Props) => {
   return (
-    <Frame aria-labelledby="how-title">
-      <div className="flex grow w-full flex-col items-center justify-center gap-10 pt-6 lg:px-20">
+    <Frame aria-labelledby="how-title" className="overflow-hidden">
+      <ProductLayer products={products} scrollRef={ref} />
+      <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-10 pt-6 lg:px-20">
         <SectionHeading
           id="how-title"
           title={

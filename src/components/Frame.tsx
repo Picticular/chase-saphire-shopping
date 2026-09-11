@@ -5,10 +5,15 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-const Frame = ({ children, ...props }: Props) => {
+const Frame = ({ children, className, ...props }: Props) => {
   return (
     <section
-      className="relative flex min-h-screen w-full snap-start snap-always flex-col px-5 pt-16 pb-24 sm:pb-16"
+      className={[
+        'relative flex min-h-screen w-full snap-start snap-always flex-col px-5 pt-16 pb-24 sm:pb-20',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       {...props}
     >
       {children}

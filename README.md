@@ -39,6 +39,7 @@ builds, and publishes `out/` to GitHub Pages. No environment variables.
 ```
 src/
   content/brand.ts       product name, URLs, stats, legal text. Edit this to rebrand.
+  content/products.ts    static imports of the product cutouts in assets/products
   pages/
     index.tsx            meta tags, favicon links, Layout + Sections
   components/
@@ -49,7 +50,9 @@ src/
     SectionHeading.tsx   animated h2 + lead paragraph shared by every section
     Sections/
       Sections.tsx       renders the sections in order
-      Hero.tsx           headline, install CTA, floating "saved $" product cards
+      Hero.tsx           headline, install CTA, product cutouts floating around and off the edges
+      FloatingProduct.tsx  one cutout with its round "saved." coin and drift animation
+      ProductLayer.tsx   decorative layer of cutouts behind a section; every section has one
       HowItWorks.tsx     two-click explainer
       Coupons.tsx        animated "tested N codes" widget
       PriceComparison.tsx  same item at three stores, best price highlighted
@@ -57,6 +60,7 @@ src/
       Rewards.tsx        earn on purchases, redeem for gift cards
       Signup.tsx         email reminder form (see below)
   assets/                Chase logo SVGs (public domain, from Wikimedia Commons)
+  assets/products/       product photo cutouts, see the README there for sources
   styles/globals.css     Tailwind entry point and theme tokens
 public/                  favicons and site.webmanifest
 ```
@@ -78,6 +82,10 @@ public/                  favicons and site.webmanifest
 - **Adding a section** means a new file in `src/components/Sections/` (copy an existing one
   for the `Frame` + `SectionHeading` setup, keep the `aria-labelledby` wiring) and one more
   line in `Sections.tsx`.
+- **Product cutouts are sized with `vw`/`vh` clamps** and capped at their source pixel
+  width (`max-w-[…px]`) so they never upscale into blur. Section cutouts (everything
+  except the hero) only render from `lg` on viewports at least 880px tall, the `tall`
+  variant in `globals.css`; shorter landscape screens have no room under the copy.
 - **Reduced motion is honoured.** `_app.tsx` wraps everything in
   `<MotionConfig reducedMotion="user">`, and each section checks `useReducedMotion()` to
   skip entrance animations. Keep that pattern in new sections.

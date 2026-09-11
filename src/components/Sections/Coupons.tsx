@@ -1,8 +1,12 @@
 import Card from '@/components/Card';
 import Frame from '@/components/Frame';
+import ProductPhoto from '@/components/ProductPhoto';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
+import type { Product } from '@/components/Sections/FloatingProduct';
+import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
+import { productPhotos } from '@/content/products';
 import { useReducedMotion } from 'framer-motion';
 import type React from 'react';
 import { useEffect, useState } from 'react';
@@ -21,6 +25,15 @@ const codes = [
 ];
 const bestIndex = 3;
 const tickMs = 320;
+
+/** The checkout card sits on the drone, so the drone carries no coin. Desktop only. */
+const products: Product[] = [
+  {
+    name: 'Camera drone',
+    image: productPhotos.cameraDrone,
+    className: 'hidden lg:tall:block top-[6%] right-[-18vw] w-[min(52vw,80vh)] max-w-[1300px]',
+  },
+];
 
 const Coupons = ({ scrollRef: ref }: Props) => {
   const shouldReduceMotion = useReducedMotion();
@@ -42,8 +55,9 @@ const Coupons = ({ scrollRef: ref }: Props) => {
   const done = tested >= codes.length;
 
   return (
-    <Frame aria-labelledby="coupons-title">
-      <div className="flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:flex-row lg:gap-16 lg:px-10">
+    <Frame aria-labelledby="coupons-title" className="overflow-hidden">
+      <ProductLayer products={products} scrollRef={ref} />
+      <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:flex-row lg:gap-16 lg:px-10">
         <div className="lg:w-1/2">
           <SectionHeading
             id="coupons-title"
@@ -75,9 +89,7 @@ const Coupons = ({ scrollRef: ref }: Props) => {
               </span>
             </div>
             <div className="mt-4 flex items-center gap-4 rounded-xl bg-purple-50 p-3">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white text-2xl">
-                🚁
-              </span>
+              <ProductPhoto image={productPhotos.cameraDrone} className="h-20 w-24 shrink-0" />
               <div className="leading-tight">
                 <p className="font-bold">Camera drone</p>
                 <p className="text-sm text-slate-500">

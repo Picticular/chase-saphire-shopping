@@ -1,8 +1,12 @@
 import Card from '@/components/Card';
 import Frame from '@/components/Frame';
+import ProductPhoto from '@/components/ProductPhoto';
 import Reveal from '@/components/Reveal';
 import SectionHeading, { Accent } from '@/components/SectionHeading';
+import type { Product } from '@/components/Sections/FloatingProduct';
+import ProductLayer from '@/components/Sections/ProductLayer';
 import { brand } from '@/content/brand';
+import { productPhotos } from '@/content/products';
 import type React from 'react';
 import { FaArrowTrendDown, FaBell } from 'react-icons/fa6';
 
@@ -10,10 +14,22 @@ interface Props {
   scrollRef?: React.RefObject<HTMLElement | null>;
 }
 
+/** Desktop only, and only when the viewport is tall enough. */
+const products: Product[] = [
+  {
+    name: 'Camera',
+    saved: '$140',
+    image: productPhotos.camera,
+    className: 'hidden lg:tall:block top-[8%] right-[-10vw] w-[min(36vw,55vh)] max-w-[440px]',
+    coin: 'top-[30%] left-[15%]',
+  },
+];
+
 const PriceDrop = ({ scrollRef: ref }: Props) => {
   return (
-    <Frame aria-labelledby="drop-title">
-      <div className="flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:flex-row lg:gap-16 lg:px-10">
+    <Frame aria-labelledby="drop-title" className="overflow-hidden">
+      <ProductLayer products={products} scrollRef={ref} />
+      <div className="relative z-10 flex grow w-full flex-col items-center justify-center gap-8 pt-6 lg:flex-row lg:gap-16 lg:px-10">
         <div className="lg:w-1/2">
           <SectionHeading
             id="drop-title"
@@ -33,9 +49,7 @@ const PriceDrop = ({ scrollRef: ref }: Props) => {
               <FaBell aria-hidden="true" /> Price watch
             </p>
             <div className="mt-4 flex items-center gap-4 rounded-xl bg-purple-50 p-3">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white text-2xl">
-                📷
-              </span>
+              <ProductPhoto image={productPhotos.camera} className="h-20 w-24 shrink-0" />
               <div className="leading-tight">
                 <p className="font-bold">Mirrorless camera</p>
                 <p className="text-sm text-slate-500">Viewed 3 days ago</p>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Section product cutouts need room under the copy; short landscape viewports go without. */
+@custom-variant tall (@media (min-height: 880px));
+
 @theme {
   --color-purple-1000: #1f1a24;
   --color-chase-blue: #117aca;

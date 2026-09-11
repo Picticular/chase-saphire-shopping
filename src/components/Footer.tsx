@@ -22,6 +22,7 @@ const Footer = ({ className }: FooterProps) => {
           </a>
         ))}
       </nav>
+      <p className="w-full text-center text-[10px] leading-tight text-slate-400">{brand.trademarkNotice}</p>
     </footer>
   );
 };
