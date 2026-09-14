@@ -38,10 +38,6 @@ jobs:
         run: bun run lint
       - name: Build with Next.js
         run: bun run next build
-        env:
-          # Remove once DNS for shopping.picticular.com is in place and the custom domain is set.
-          BASE_PATH: /chase-saphire-shopping
-          SITE_URL: https://picticular.github.io/chase-saphire-shopping
       # After build: next-env.d.ts and .next/types are generated, not committed
       - name: Typecheck
         run: bun run typecheck

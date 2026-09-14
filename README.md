@@ -32,18 +32,16 @@ dev.
 ## Deploying
 
 Push to `main`. `.github/workflows/nextjs.yml` installs with Bun, runs lint and typecheck,
-builds, and publishes `out/` to GitHub Pages. Until the custom domain is live the site is
-at https://picticular.github.io/chase-saphire-shopping/ and the workflow sets
-`BASE_PATH=/chase-saphire-shopping` and `SITE_URL` (used for the Open Graph tags) for the build.
+builds, and publishes `out/` to GitHub Pages at https://shopping.picticular.com/.
 
-### Moving to shopping.picticular.com
+The custom domain is wired up in two places: a DNS record at ezhostingserver.com
+(`shopping  CNAME  picticular.github.io`) and the repo's Pages setting
+(`gh api -X PUT repos/Picticular/chase-saphire-shopping/pages -f cname=shopping.picticular.com`).
+"Enforce HTTPS" is ticked in Settings → Pages. GitHub Pages serves one URL per site, so
+picticular.github.io/chase-saphire-shopping no longer works.
 
-1. Add a DNS record at ezhostingserver.com: `sapphire  CNAME  picticular.github.io`.
-2. Delete the `BASE_PATH` and `SITE_URL` env from the build step in `.github/workflows/nextjs.yml`.
-3. Set the custom domain: `gh api -X PUT repos/Picticular/chase-saphire-shopping/pages -f cname=shopping.picticular.com`,
-   then tick "Enforce HTTPS" in Settings → Pages once the DNS check passes.
-
-GitHub Pages serves one URL per site, so the github.io address stops working at step 3.
+To build for a subpath again, set `BASE_PATH=/chase-saphire-shopping` and
+`SITE_URL=https://picticular.github.io/chase-saphire-shopping` in the workflow's build step.
 
 The repo is public because the Picticular org is on GitHub's free plan, which only
 serves Pages from public repos.
